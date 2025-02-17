@@ -5,6 +5,14 @@ from selenium.webdriver.support import expected_conditions as EC
 import pytest
 import time
 
+# Função para ser reutilizada
+def fazer_login(browser, username, password):
+    browser.get("https://www.saucedemo.com")
+    browser.find_element(By.ID, "user-name").send_keys(username)
+    browser.find_element(By.ID, "password").send_keys(password)
+    browser.find_element(By.ID, "login-button").click()
+
+
 dados_teste = [
     {"nome": "João Silva", "senha": "123456789"},
     {"nome": "standard_user", "senha": "secret_sauce"},
