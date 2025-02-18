@@ -21,13 +21,19 @@ def test_adicionar_item_ao_carrinho(browser):
     assert "1" in carrinho.text  # Verifica se o número de itens no carrinho é 1
 
     # Atualiza a referência ao botão após o primeiro clique
-    item = browser.find_element(By.CLASS_NAME, "btn_secondary")  # Localiza o botão novamente
+    item = browser.find_element(By.CLASS_NAME, "btn_primary")  # Localiza o botão novamente
 
-    # Tenta adicionar o mesmo item novamente
+    # Exclui o item
     item.click()
 
+    # Atualiza a referência ao carrinho após o segundo clique
+    carrinho = browser.find_element(By.CLASS_NAME, "shopping_cart_badge")  # Localiza o carrinho novamente
+
     # Verifica se o carrinho ainda contém apenas uma unidade do item
-    assert "1" in carrinho.text  # O número de itens no carrinho ainda deve ser 1
+    assert "" in carrinho.text  # O número de itens no carrinho deve ser igual a 0
+
+    # Atualiza a referência ao botão após o segundo clique
+    item = browser.find_element(By.CLASS_NAME, "btn_secondary")  # Localiza o botão novamente
 
     # Verifica se o botão "Add to cart" foi alterado para "Remove"
     assert item.text == "Remove"  # Verifica se o texto do botão mudou
