@@ -5,6 +5,7 @@ import time
 def browser():
     # Inicializa o navegador
     driver = webdriver.Chrome()
+    driver.maximize_window()
     yield driver
-    # Fecha o navegador após o teste
+    time.sleep(5)
     driver.quit()

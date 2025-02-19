@@ -1,4 +1,5 @@
 import pytest
+import random
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -9,31 +10,23 @@ def test_adicionar_item_ao_carrinho(browser):
     fazer_login(browser, "standard_user", "secret_sauce")
 
     # Navega até a página de inventário
-    browser.get("https://www.saucedemo.com/inventory.html")
 
-    # Adiciona um item ao carrinho
-    item = browser.find_element(By.CLASS_NAME, "btn_primary")
-    item.click()
-
-    # Verifica se o item foi adicionado ao carrinho
+    # Localiza todos os botões "Add to cart"
     wait = WebDriverWait(browser, 10)
-    carrinho = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "shopping_cart_badge")))
-    assert "1" in carrinho.text  # Verifica se o número de itens no carrinho é 1
+    botoes_adicionar = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "btn_primary")))
 
-    # Atualiza a referência ao botão após o primeiro clique
-    item = browser.find_element(By.CLASS_NAME, "btn_primary")  # Localiza o botão novamente
+    # Verifica se há pelo menos 4 itens disponíveis
+    assert len(botoes_adicionar) >= 4, "Não há itens suficientes para adicionar ao carrinho."
 
-    # Exclui o item
-    item.click()
+    # Seleciona 4 itens aleatórios
+    itens_aleatorios = random.sample(botoes_adicionar, 4)
 
-    # Atualiza a referência ao carrinho após o segundo clique
-    carrinho = browser.find_element(By.CLASS_NAME, "shopping_cart_badge")  # Localiza o carrinho novamente
+    # Adiciona os 4 itens ao carrinho
+    for item in itens_aleatorios:
+        item.click()
 
-    # Verifica se o carrinho ainda contém apenas uma unidade do item
-    assert "" in carrinho.text  # O número de itens no carrinho deve ser igual a 0
-
-    # Atualiza a referência ao botão após o segundo clique
-    item = browser.find_element(By.CLASS_NAME, "btn_secondary")  # Localiza o botão novamente
-
-    # Verifica se o botão "Add to cart" foi alterado para "Remove"
-    assert item.text == "Remove"  # Verifica se o texto do botão mudou
+    # Verifica se os itens foram adicionados ao carrinho
+    carrinho = wait.until(
+        EC.presence_of_element_located((By.CLASS_NAME, "shopping_cart_badge"))
+    )
+    assert carrinho.text == "4", f"O carrinho deveria ter 4 itens, mas tem {carrinho.text}."

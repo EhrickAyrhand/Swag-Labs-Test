@@ -6,15 +6,15 @@
 
 # Carrinho de Compras
 
-Adicionar itens ao carrinho.
+# Adicionar itens ao carrinho.
 
 # Adicionar produtos e validar valores
 
-Checar nome e valor dos produtos 
+# Checar nome e valor dos produtos 
 
 # Remover produtos do carrinho
 
-qualquer produto acima de 16 remova
+# qualquer produto acima de 16 remova
 
 # Finalização de Compra
 
