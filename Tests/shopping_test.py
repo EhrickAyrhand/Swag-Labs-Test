@@ -5,13 +5,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from Tests.login_test import fazer_login
 
-def test_adicionar_item_ao_carrinho(browser):
+def adicionar_item_ao_carrinho(browser):
     # Faz login
     fazer_login(browser, "standard_user", "secret_sauce")
 
     # Navega até a página de inventário
 
     # Localiza todos os botões "Add to cart"
+    browser.get("https://www.saucedemo.com/inventory.html")
     wait = WebDriverWait(browser, 10)
     botoes_adicionar = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "btn_primary")))
 
