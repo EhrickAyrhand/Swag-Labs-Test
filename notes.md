@@ -1,26 +1,26 @@
 # Tests a serem feitos
 
-# Cadastro e Login 
+# Cadastro e Login Feito
 
-# Testar login com credenciais inválidas
+# Testar login com credenciais inválidas Feito
 
-# Carrinho de Compras
+# Carrinho de Compras Feito
 
-# Adicionar itens ao carrinho.
+# Adicionar itens ao carrinho Feito
 
-# Adicionar produtos e validar valores
+# Adicionar produtos e validar valores Feito
 
-# Checar nome e valor dos produtos 
+# Checar valor dos produtos  Feito
 
-# Remover produtos do carrinho
+# qualquer produto acima de 15.99 remova Feito
 
-# qualquer produto acima de 16 remova
+# Remover produtos do carrinho Feito
 
 # Finalização de Compra
 
-# Preencher dados corretamente e concluir
-
 # Testar fluxo com campos vazios/inválidos
+
+# Preencher dados corretamente e concluir
 
 # Filtros e Ordenação
 
