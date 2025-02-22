@@ -13,3 +13,16 @@ def test_finalizar_compra_carrinho(browser):
     btn_finalizar = browser.find_element(By.CLASS_NAME, "btn_action ")
 
     btn_finalizar.click()
+
+    #Campo de nome
+
+    #Campo de endereço
+
+    #Campo de Postal Code
+
+    #Botão de confirmação
+
+    #Botão de finalização
+
+    #Verificação de erro
+    
