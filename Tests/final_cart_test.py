@@ -28,12 +28,18 @@ def test_finalizar_compra_carrinho(browser, dados):
     primeiro_nome.clear()
     ultimo_nome.clear()
     postal_code.clear()
-    time.sleep(5)
+    time.sleep(3)
     primeiro_nome.send_keys(dados["nome"])
-    time.sleep(5)
+    time.sleep(3)
     ultimo_nome.send_keys(dados["sobrenome"]) 
-    time.sleep(5)
+    time.sleep(3)
     postal_code.send_keys(dados["postal"])
-    time.sleep(5)
+    time.sleep(3)
 
     btn_continue.click()
+
+    btn_finish = browser.find_element(By.ID, "finish")
+
+    btn_finish.click()
+
+print("")

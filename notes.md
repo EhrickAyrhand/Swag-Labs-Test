@@ -16,11 +16,11 @@
 
 # Remover produtos do carrinho Feito
 
-# Finalização de Compra
+# Finalização de Compra Feito
 
-# Testar fluxo com campos vazios/inválidos
+# Testar fluxo com campos vazios/inválidos Feito
 
-# Preencher dados corretamente e concluir
+# Preencher dados corretamente e concluir Feito
 
 # Filtros e Ordenação
 
