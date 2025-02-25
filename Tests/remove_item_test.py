@@ -1,6 +1,4 @@
-import pytest
 from selenium.webdriver.common.by import By
-from Tests.login_test import fazer_login
 from Tests.shopping_test import adicionar_item_ao_carrinho
 import time
 
