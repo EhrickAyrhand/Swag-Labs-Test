@@ -15,6 +15,8 @@ def remover_itens_do_carrinho(browser):
     for item in cart_items:
         price_element = item.find_element(By.CLASS_NAME, "inventory_item_price")
         price_text = price_element.text
+       # inventory_item_name = item.find_element(By.CLASS_NAME, "inventory_item_name")
+        #inventory_item_name_text = inventory_item_name.text
         
         price = float(price_text.replace("$", ""))
         
