@@ -5,7 +5,6 @@ from Tests.shopping_test import adicionar_item_ao_carrinho
 import time
 
 def remover_itens_do_carrinho(browser):
-    fazer_login(browser, "standard_user", "secret_sauce")
     
     adicionar_item_ao_carrinho(browser)
     

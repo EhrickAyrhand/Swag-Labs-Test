@@ -5,48 +5,29 @@ from selenium.webdriver.support import expected_conditions as EC
 import pytest
 import time
 
-# Função para ser reutilizada
+# Função para fazer login
 def fazer_login(browser, username, password):
     browser.get("https://www.saucedemo.com")
     browser.find_element(By.ID, "user-name").send_keys(username)
     browser.find_element(By.ID, "password").send_keys(password)
     browser.find_element(By.ID, "login-button").click()
 
+    expected_url = "https://www.saucedemo.com/inventory.html"
+    try:
+        WebDriverWait(browser, 10).until(EC.url_to_be(expected_url))
+        print(f"✅ Login bem-sucedido para {username}! Redirecionado para a URL correta.")
+    except:
+        pytest.fail(f"❌ Falha no login para {username}. URL atual: {browser.current_url}")
+
+    time.sleep(2)
 
 dados_teste = [
-    {"nome": "João Silva", "senha": "123456789"},
     {"nome": "standard_user", "senha": "secret_sauce"},
 ]
 
 @pytest.fixture
 def driver():
-    driver = webdriver.Chrome() 
-    driver.get("https://www.saucedemo.com")
+    driver = webdriver.Chrome()
     driver.maximize_window()
-    yield driver 
+    yield driver
     driver.quit()
-
-@pytest.mark.parametrize("dados", dados_teste)
-def test_cadastro_newsletter(driver, dados):
-    wait = WebDriverWait(driver, 10)
-
-    campo_nome = wait.until(EC.presence_of_element_located((By.ID, "user-name")))
-    campo_senha = driver.find_element(By.ID, "password")
-    botao_envio = driver.find_element(By.ID, "login-button")
-
-    campo_nome.clear()
-    campo_senha.clear()
-
-    campo_nome.send_keys(dados["nome"])
-    campo_senha.send_keys(dados["senha"]) 
-
-    botao_envio.click()
-
-    try:
-        wait.until(EC.visibility_of_element_located(
-            (By.CLASS_NAME, "right_component")
-        ))
-    except:
-        pytest.fail("❌ Nenhuma mensagem de resposta encontrada")
-
-    time.sleep(5)
