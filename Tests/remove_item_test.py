@@ -15,9 +15,8 @@ def remover_itens_do_carrinho(browser):
     for item in cart_items:
         price_element = item.find_element(By.CLASS_NAME, "inventory_item_price")
         price_text = price_element.text
-       # inventory_item_name = item.find_element(By.CLASS_NAME, "inventory_item_name")
-        #inventory_item_name_text = inventory_item_name.text
-        
+        inventory_item_name = item.find_element(By.CLASS_NAME, "inventory_item_name")
+        inventory_item_name_text = inventory_item_name.text
         price = float(price_text.replace("$", ""))
         
         if price > 15.99:
@@ -37,9 +36,11 @@ def remover_itens_do_carrinho(browser):
     for item in remaining_items:
         price_element = item.find_element(By.CLASS_NAME, "inventory_item_price")
         price_text = price_element.text
+        inventory_item_name = item.find_element(By.CLASS_NAME, "inventory_item_name")
+        inventory_item_name_text = inventory_item_name.text
         price = float(price_text.replace("$", ""))
         assert price <= 15.99, f"Item com preço {price} ainda está no carrinho."
-        print(f"no carrinho há os seguintes valores de itens {price}")
+        print(f"no carrinho há os seguintes: {inventory_item_name_text} valores de itens {price}")
 
         total_price += price
 
