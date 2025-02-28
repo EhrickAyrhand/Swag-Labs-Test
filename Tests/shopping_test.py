@@ -3,9 +3,18 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from Tests.login_test import fazer_login
+import time
 
 def adicionar_item_ao_carrinho(browser):
     fazer_login(browser, "standard_user", "secret_sauce")
+
+    botao_ordenar = browser.find_element(By.CLASS_NAME, "product_sort_container")
+    botao_za = browser.find_element(By.CSS_SELECTOR, "option[value='za']")
+
+    botao_ordenar.click()
+    botao_za.click()
+    time.sleep(4)
+
 
     wait = WebDriverWait(browser, 10)
     botoes_adicionar = wait.until(EC.presence_of_all_elements_located((By.CLASS_NAME, "btn_primary")))
